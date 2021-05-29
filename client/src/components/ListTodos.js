@@ -79,7 +79,7 @@ const ListTodos = () => {
           ))}
         </tbody>
       </table>
-      <a href="http://localhost:3000/users/logout">Logout</a>
+      <a href="/users/logout">Logout</a>
     </Fragment>
   );
 };
