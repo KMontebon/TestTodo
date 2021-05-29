@@ -59,7 +59,7 @@ app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
   res.render("dashboard", { user: req.user.name });
 });
 
-app.get("https://testmonfer.herokuapp.com/users/logout", (req, res) => {
+app.get("/users/logout", (req, res) => {
   req.logout();
   res.render("index", { message: "You have logged out successfully" });
 });
@@ -148,7 +148,7 @@ function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("http://localhost:5000/");
+  res.redirect("/users/login");
 }
 
 //--------------------------------------------------------------------
