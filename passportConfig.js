@@ -11,7 +11,7 @@ function initialize(passport) {
   const authenticateUser = (email, password, done) => {
     console.log(email, password);
     pool.query(
-      `SELECT * FROM users WHERE email = $1`,
+      `SELECT * FROM todoapp.users WHERE email = $1`,
       [email],
       (err, results) => {
         if (err) {
@@ -61,7 +61,7 @@ function initialize(passport) {
   // The fetched object is attached to the request object as req.user
 
   passport.deserializeUser((id, done) => {
-    pool.query(`SELECT * FROM users WHERE id = $1`, [id], (err, results) => {
+    pool.query(`SELECT * FROM todoapp.users WHERE id = $1`, [id], (err, results) => {
       if (err) {
         return done(err);
       }

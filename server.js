@@ -172,7 +172,7 @@ app.post("/todos", async (req, res) => {
 
 app.get("/todos", async (req, res) => {
     try {
-      const allTodos = await pool.query("SELECT * FROM todoapp.todo");
+      const allTodos = await pool.query("SELECT * FROM todoapp.todo WHERE roles = $1", [role]);
       res.json(allTodos.rows);
     } catch (err) {
       console.error(err.message);
