@@ -131,7 +131,7 @@ app.post("/users/register", async (req, res) => {
 app.post(
   "/users/login",
   passport.authenticate("local", {
-    successRedirect: "https://testmonfer.herokuapp.com/todos",
+    successRedirect: "http://localhost:3001/todos",
     failureRedirect: "/users/login",
     failureFlash: true
   })
@@ -139,7 +139,7 @@ app.post(
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect("https://testmonfer.herokuapp.com/todos");
+    return res.redirect("http://localhost:3001/todos");
   }
   next();
 }
@@ -148,7 +148,7 @@ function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("https://testmonfer.herokuapp.com/todos");
+  res.redirect("http://localhost:3001/todos");
 }
 
 //--------------------------------------------------------------------
