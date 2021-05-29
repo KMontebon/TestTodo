@@ -59,7 +59,7 @@ app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
   res.render("dashboard", { user: req.user.name });
 });
 
-app.get("/users/logout", (req, res) => {
+app.get("https://testmonfer.herokuapp.com/users/logout", (req, res) => {
   req.logout();
   res.render("index", { message: "You have logged out successfully" });
 });
@@ -131,7 +131,7 @@ app.post("/users/register", async (req, res) => {
 app.post(
   "/users/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "http://localhost:5000/",
     failureRedirect: "/users/login",
     failureFlash: true
   })
@@ -139,7 +139,7 @@ app.post(
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect("/");
+    return res.redirect("http://localhost:5000/");
   }
   next();
 }
@@ -148,7 +148,7 @@ function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/");
+  res.redirect("http://localhost:5000/");
 }
 
 //--------------------------------------------------------------------
