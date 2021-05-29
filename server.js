@@ -95,7 +95,7 @@ app.post("/users/register", async (req, res) => {
     console.log(hashedPassword);
     // Validation passed
     pool.query(
-      `SELECT * FROM users
+      `SELECT * FROM todoapp.users
         WHERE email = $1`,
       [email],
       (err, results) => {
@@ -131,7 +131,7 @@ app.post("/users/register", async (req, res) => {
 app.post(
   "/users/login",
   passport.authenticate("local", {
-    successRedirect: "/todos",
+    successRedirect: "http://localhost:5000/",
     failureRedirect: "/users/login",
     failureFlash: true
   })
@@ -139,7 +139,7 @@ app.post(
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect("/todos");
+    return res.redirect("http://localhost:5000/");
   }
   next();
 }
@@ -148,7 +148,7 @@ function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("http://localhost:5000/todos");
+  res.redirect("http://localhost:5000/");
 }
 
 //--------------------------------------------------------------------
