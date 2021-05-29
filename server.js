@@ -131,7 +131,7 @@ app.post("/users/register", async (req, res) => {
 app.post(
   "/users/login",
   passport.authenticate("local", {
-    successRedirect: "http://localhost:${PORT}/",
+    successRedirect: "http://localhost:5000/",
     failureRedirect: "/users/login",
     failureFlash: true
   })
@@ -139,7 +139,7 @@ app.post(
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect("http://localhost:${PORT}/");
+    return res.redirect("http://localhost:5000/");
   }
   next();
 }
@@ -148,7 +148,7 @@ function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("http://localhost:${PORT}/");
+  res.redirect("http://localhost:5000/");
 }
 
 //--------------------------------------------------------------------
